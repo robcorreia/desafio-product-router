@@ -7,6 +7,15 @@ const Produtos = () => {
   const [produtos, setProdutos] = React.useState(null);
 
   React.useEffect(() => {
+    /* const url = 'https://ranekapi.origamid.dev/json/api/produto';
+    async function fetchData() {
+      const response = await fetch(url);
+      const json = response.json();
+      json.then((text) => setProdutos(text));
+      return json;
+    }
+    fetchData(url); */
+
     fetch('https://ranekapi.origamid.dev/json/api/produto')
       .then((response) => response.json())
       .then((json) => setProdutos(json));
@@ -15,7 +24,7 @@ const Produtos = () => {
   if (produtos === null) return null;
   return (
     <section className={`${styles.produtos} animeLeft`}>
-      <Head title="Ranek" description="Home" />
+      <Head title="Ranek" description="Descrição do site Ranek" />
       {produtos.map((produto) => (
         <Link to={`produto/${produto.id}`} key={produto.id}>
           <img src={produto.fotos[0].src} alt={produto.fotos[0].titulo} />
